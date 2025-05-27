@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Academic Planner - Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="header-container" style="display:flex; justify-content: space-between; align-items: center;">
+            <h1><i class="fa-solid fa-book"></i> Academic Planner</h1>
+            <form action="{{ url_for('logout') }}" method="get" style="margin:0;">
+                <button type="submit" style="background-color:#e74c3c; color:white; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;">Logout</button>
+            </form>
+        </div>
+    </header>
+    <div class="container">
+        <form id="task-form" class="task-form">
+            <h2><i class="fa-solid fa-tasks"></i> Add / Update Task</h2>
+            <input type="hidden" id="task-id" />
+            <div class="form-group">
+                <label for="title"><i class="fa-solid fa-heading"></i> Task Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter task title" required />
+            </div>
+            <div class="form-group">
+                <label for="description"><i class="fa-solid fa-align-left"></i> Description:</label>
+                <textarea id="description" name="description" rows="3" placeholder="Enter task description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="priority"><i class="fa-solid fa-flag"></i> Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="High">High</option>
+                    <option value="Medium" selected>Medium</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="completed" />
+                    <i class="fa-solid fa-check"></i> Completed
+                </label>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Task</button>
+                <button type="button" id="cancel-update" class="btn-secondary" style="display:none;"><i class="fa-solid fa-ban"></i> Cancel Update</button>
+            </div>
+        </form>
+
+        <section id="task-list-section">
+            <h2><i class="fa-solid fa-list-check"></i> Task List</h2>
+            <ul id="task-list" class="task-list"></ul>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
